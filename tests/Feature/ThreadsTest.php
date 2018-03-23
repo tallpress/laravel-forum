@@ -15,7 +15,7 @@ class ExampleTest extends TestCase
     public function setUp()
     {
       parent::setUp();
-      $this->thread = factory('App\Thread')->create();
+      $this->thread = create('App\Thread');
     }
 
     /** @test **/
@@ -35,8 +35,6 @@ class ExampleTest extends TestCase
     /** @test **/
     public function a_user_can_read_a_threads_replies()
     {
-      echo app('env'); // IN TESTING ENVIRONMENT
-      echo ("##################################################################");
       $reply = factory('App\Reply')
         ->create(['thread_id' => $this->thread->id]);
       $this->get('/threads/' . $this->thread->id)
