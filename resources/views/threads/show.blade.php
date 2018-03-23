@@ -24,7 +24,7 @@
     </div>
 
 
-    <!-- @if (auth()->check()) -->
+    @if (auth()->check())
       <div class="row justify-content-center">
           <div class="col-md-8">
             <form action="/threads/{{ $thread->id }}/replies" method="POST">
@@ -36,7 +36,9 @@
             </form>
           </div>
       </div>
-    <!-- @endif -->
+    @else
+      <p>Please <a href="{{ route('login') }}">sign in</a> to comment</p>
+    @endif
 
 </div>
 @endsection
