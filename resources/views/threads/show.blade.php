@@ -23,17 +23,20 @@
         </div>
     </div>
 
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-          <form action="/threads/{thread}/replies" method="POST">
-              {{ csrf_field() }}
-              <div class="form-group">
-                <textarea placeholder="Comment here..." name="body" rows="8" cols="80" class="form-control"></textarea>
-              </div>
-              <button type="submit" class="btn btn-default">Post</button>
-          </form>
-        </div>
-    </div>
+
+    <!-- @if (auth()->check()) -->
+      <div class="row justify-content-center">
+          <div class="col-md-8">
+            <form action="/threads/{{ $thread->id }}/replies" method="POST">
+                {{ csrf_field() }}
+                <div class="form-group">
+                  <textarea placeholder="Comment here..." name="body" rows="8" cols="80" class="form-control"></textarea>
+                </div>
+                <button type="submit" class="btn btn-default">Post</button>
+            </form>
+          </div>
+      </div>
+    <!-- @endif -->
 
 </div>
 @endsection

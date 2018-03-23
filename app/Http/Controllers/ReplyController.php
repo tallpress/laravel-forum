@@ -11,7 +11,7 @@ class ReplyController extends Controller
   {
     $this->middleware('auth');
   }
-  
+
 
   public function store(Thread $thread)
   {
@@ -20,6 +20,6 @@ class ReplyController extends Controller
       'user_id' => auth()->id()
     ]);
 
-    return redirect('/threads/{thread}');
+    return redirect('/threads/'.$thread->id);
   }
 }
