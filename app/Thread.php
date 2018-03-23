@@ -13,7 +13,11 @@ class Thread extends Model
     return $this->hasMany(Reply::class);
   }
 
-
+  public function channel()
+  {
+    return $this->belongsTo(Channel::class);
+  }
+  
   public function creator()
   {
     return $this->belongsTo(User::class, 'user_id');
@@ -24,6 +28,8 @@ class Thread extends Model
   {
     $this->replies()->create($reply);
   }
+
+
 
 
 }

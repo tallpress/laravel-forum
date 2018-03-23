@@ -24,7 +24,7 @@ class CreateThreadsTest extends TestCase
        $this->post('/threads', $thread->toArray());
      }
 
-
+    /** @test */
     public function a_aiuth_user_can_create_a_thread()
     {
       $user = create('App\User');
@@ -37,6 +37,12 @@ class CreateThreadsTest extends TestCase
       $this->get('/threads/'.$thread->id)
        ->assertSee($thread->title)
        ->assertSee($thread->body);
+    }
 
+    /** @test */
+    public function non_auth_users_cannot_see_create_thread_page()
+    {
+      $this->expectException('Illuminate\Auth\AuthenticationException');
+      $this->get('/threads/create');
     }
 }

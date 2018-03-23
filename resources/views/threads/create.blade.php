@@ -10,6 +10,7 @@
                 <div class="card-body">
                   <div class="row justify-content-center">
                       <div class="col-md-8">
+                        @if (auth()->check())
                         <form action="/threads" method="POST">
                             {{ csrf_field() }}
                             <div class="form-group">
@@ -21,6 +22,9 @@
                             </div>
                             <button type="submit" class="btn btn-primary">Publish</button>
                         </form>
+                        @else
+                        <p>Please <a href="{{ route('login') }}">sign in</a> to publish a new thread</p>
+                        @endif
                       </div>
                   </div>
                 </div>
