@@ -30,7 +30,7 @@ class ThreadController extends Controller
      */
     public function create()
     {
-        //
+        return view('threads.create');
     }
 
     /**
@@ -45,12 +45,12 @@ class ThreadController extends Controller
     public function store(Request $request)
     {
         $thread = Thread::create([
-          'user_id' => request('user_id'),
+          'user_id' => auth()->id(),
           'title' => request('title'),
           'body' => request('body')
         ]);
 
-        return redirect('thread'.$thread->id);
+        return redirect('threads/'.$thread->id);
     }
 
     /**

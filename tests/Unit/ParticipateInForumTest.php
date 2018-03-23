@@ -14,8 +14,8 @@ class ParticipateInForumTest extends TestCase
     /** @test */
      public function a_user_can_contribute_a_reply_to_a_thread_auth_user()
      {
-       $user = factory('App\User')->create();
-       $this->be($user); //authenticate the user
+
+       TestCase::signIn();
 
        $thread = factory('App\Thread')->create();
        $reply = factory('App\Reply')->make();
