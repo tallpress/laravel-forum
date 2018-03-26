@@ -26,7 +26,7 @@
     <?php if(auth()->check()): ?>
       <div class="row justify-content-center">
           <div class="col-md-8">
-            <form action="/threads/<?php echo e($thread->id); ?>/replies" method="POST">
+            <form action="<?php echo e($thread->path()); ?>/replies" method="POST">
                 <?php echo e(csrf_field()); ?>
 
                 <div class="form-group">

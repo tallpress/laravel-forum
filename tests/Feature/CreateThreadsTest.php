@@ -30,11 +30,11 @@ class CreateThreadsTest extends TestCase
       $user = create('App\User');
       $this->be($user); //authenticate the user
 
-      $thread = make('App\Thread');
+      $thread = create('App\Thread');
 
       $this->post('/threads', $thread->toArray());
 
-      $this->get('/threads/'.$thread->id)
+      $this->get($thread->path())
        ->assertSee($thread->title)
        ->assertSee($thread->body);
     }

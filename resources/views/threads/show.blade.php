@@ -27,7 +27,7 @@
     @if (auth()->check())
       <div class="row justify-content-center">
           <div class="col-md-8">
-            <form action="/threads/{{ $thread->id }}/replies" method="POST">
+            <form action="{{ $thread->path() }}/replies" method="POST">
                 {{ csrf_field() }}
                 <div class="form-group">
                   <textarea placeholder="Comment here..." name="body" rows="8" cols="80" class="form-control"></textarea>

@@ -17,7 +17,7 @@ class Thread extends Model
   {
     return $this->belongsTo(Channel::class);
   }
-  
+
   public function creator()
   {
     return $this->belongsTo(User::class, 'user_id');
@@ -29,7 +29,9 @@ class Thread extends Model
     $this->replies()->create($reply);
   }
 
-
-
+  public function path()
+  {
+    return "/threads/{$this->channel->slug}/{$this->id}";
+  }
 
 }

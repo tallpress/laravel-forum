@@ -28,7 +28,7 @@ class ExampleTest extends TestCase
     /** @test **/
     public function a_user_can_view_a_single_thread()
     {
-      $response = $this->get('/threads/' . $this->thread->id);
+      $response = $this->get($this->thread->path());
       $response->assertSee($this->thread->title);
     }
 
@@ -37,7 +37,14 @@ class ExampleTest extends TestCase
     {
       $reply = factory('App\Reply')
         ->create(['thread_id' => $this->thread->id]);
-      $this->get('/threads/' . $this->thread->id)
+      $this->get($this->thread->path())
         ->assertSee($reply->body);
+    }
+
+    /** @test **/
+    public function a_thread_can_make_a_string_a_path()
+    {
+      $thread = make('App\Thread');
+      $this->assertEquals($thread->path(), "/threads/{$thread->channel->slug}/{$thread->id}");
     }
 }

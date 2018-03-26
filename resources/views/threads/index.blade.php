@@ -10,7 +10,10 @@
                 <div class="card-body">
                   @foreach ($threads as $thread)
                     <article>
-                      <h4><a href="/threads/{{ $thread->id }}">{{ $thread->title }}</a></h4>
+                      <h4>
+                        <a href="{{ $thread->path() }}">{{ $thread->title }}</a>
+                      </h4>
+
                       <strong>{{ $thread->created_at->diffForHumans() }}</strong>
                       <p>
                         {{ $thread->body }}

@@ -8,7 +8,10 @@
                 <div class="card-body">
                   <?php $__currentLoopData = $threads; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $thread): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <article>
-                      <h4><a href="/threads/<?php echo e($thread->id); ?>"><?php echo e($thread->title); ?></a></h4>
+                      <h4>
+                        <a href="<?php echo e($thread->path()); ?>"><?php echo e($thread->title); ?></a>
+                      </h4>
+
                       <strong><?php echo e($thread->created_at->diffForHumans()); ?></strong>
                       <p>
                         <?php echo e($thread->body); ?>

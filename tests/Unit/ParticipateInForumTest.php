@@ -23,10 +23,10 @@ class ParticipateInForumTest extends TestCase
 
        $response = $this->json(
          'POST',
-         '/threads/' . $thread->id . '/replies',
+         "threads/{$thread->channel}/{$thread->id}/replies",
          $request
        );
-       $this->get('/threads/'.$thread->id)
+       $this->get($thread->path())
         ->assertSee($reply->body);
 
      }

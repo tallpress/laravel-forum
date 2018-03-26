@@ -17,6 +17,9 @@
                               <label for="title">Title: </label>
                               <input type="text" name="title" class="form-control">
 
+                              <label for="channel">Channel: </label>
+                              <input type="text" name="channel" class="form-control">
+
                               <label for="body">Body: </label>
                               <textarea name="body" rows="8" class="form-control"></textarea>
                             </div>
