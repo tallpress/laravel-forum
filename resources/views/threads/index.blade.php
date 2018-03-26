@@ -14,6 +14,8 @@
                         <a href="{{ $thread->path() }}">{{ $thread->title }}</a>
                       </h4>
 
+                      <h6><a href="#">{{ $thread->creator->name }}</a></h6>
+
                       <strong>{{ $thread->created_at->diffForHumans() }}</strong>
                       <p>
                         {{ $thread->body }}

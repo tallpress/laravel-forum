@@ -30,4 +30,14 @@ class ParticipateInForumTest extends TestCase
         ->assertSee($reply->body);
 
      }
+
+     /** @test */
+     public function the_body_of_a_thread_is_required()
+     {
+       $this->expectException('Illuminate\Validation\ValidationException');
+       $this->signIn();
+       $thread = create('App\Thread');
+       $reply = make('App\Reply', ['body' => null]);
+       $this->post($thread->path() . '/replies', $reply->toArray());
+     }
 }

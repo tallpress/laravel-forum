@@ -14,18 +14,30 @@
 
                             <div class="form-group">
                               <label for="title">Title: </label>
-                              <input type="text" name="title" class="form-control">
+                              <input type="text" name="title" class="form-control" value="<?php echo e(old('title')); ?>">
 
-                              <label for="channel">Channel: </label>
-                              <input type="text" name="channel" class="form-control">
+                              <label for="channel_id">Choose a channel</label>
+                              <select class="form-control" name="channel_id" id="channel_id">
+                                <?php $__currentLoopData = App\Channel::all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $channel): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                <option value="<?php echo e($channel->id); ?>"><?php echo e($channel->name); ?></option>
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                              </select>
 
                               <label for="body">Body: </label>
-                              <textarea name="body" rows="8" class="form-control"></textarea>
+                              <textarea name="body" rows="8" class="form-control" value="<?php echo e(old('body')); ?>"></textarea>
                             </div>
                             <button type="submit" class="btn btn-primary">Publish</button>
                         </form>
                         <?php else: ?>
                         <p>Please <a href="<?php echo e(route('login')); ?>">sign in</a> to publish a new thread</p>
+                        <?php endif; ?>
+
+                        <?php if(count($errors)): ?>
+                        <ul class='alert alert-danger'>
+                          <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <li><?php echo e($error); ?></li>
+                          <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                        </ul>
                         <?php endif; ?>
                       </div>
                   </div>

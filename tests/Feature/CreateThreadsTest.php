@@ -6,7 +6,6 @@ use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
-
 class CreateThreadsTest extends TestCase
 {
 
@@ -27,16 +26,12 @@ class CreateThreadsTest extends TestCase
     /** @test */
     public function a_aiuth_user_can_create_a_thread()
     {
-      $user = create('App\User');
-      $this->be($user); //authenticate the user
-
-      $thread = create('App\Thread');
-
-      $this->post('/threads', $thread->toArray());
-
-      $this->get($thread->path())
-       ->assertSee($thread->title)
-       ->assertSee($thread->body);
+      $this->signIn();
+      $thread = make('App\Thread');
+      $response = $this->post('/threads', $thread->toArray());
+      $this->get($response->headers->get('Location'))
+          ->assertSee($thread->title)
+          ->assertSee($thread->body);
     }
 
     /** @test */
@@ -44,5 +39,39 @@ class CreateThreadsTest extends TestCase
     {
       $this->expectException('Illuminate\Auth\AuthenticationException');
       $this->get('/threads/create');
+    }
+
+    /** @test */
+    public function a_new_thread_requires_a_title()
+    {
+      $this->expectException('Illuminate\Validation\ValidationException');
+      $this->publishThread(['title' => null]);
+      $this->post('/threads', $thread->toArray());
+    }
+
+    /** @test */
+    public function a_new_thread_requires_a_body()
+    {
+      $this->expectException('Illuminate\Validation\ValidationException');
+      $this->publishThread(['body' => null]);
+      $this->post('/threads', $thread->toArray());
+    }
+
+    /** @test */
+    public function a_new_thread_requires_a_channel_id()
+    {
+      factory('App\Channel', 2)->create();
+
+      $this->expectException('Illuminate\Validation\ValidationException');
+      $this->publishThread(['channel_id' => 99]);
+      $this->post('/threads', $thread->toArray());
+    }
+
+
+    public function publishThread($overrides)
+    {
+      $this->signIn();
+      $thread = make('App\Thread', $overrides);
+      return $this->post('/threads', $thread->toArray());
     }
 }

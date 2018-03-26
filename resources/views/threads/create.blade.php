@@ -15,18 +15,31 @@
                             {{ csrf_field() }}
                             <div class="form-group">
                               <label for="title">Title: </label>
-                              <input type="text" name="title" class="form-control">
+                              <input type="text" name="title" class="form-control" value="{{ old('title') }}" required>
 
-                              <label for="channel">Channel: </label>
-                              <input type="text" name="channel" class="form-control">
+                              <label for="channel_id">Choose a channel</label>
+                              <select class="form-control" name="channel_id" id="channel_id">
+                                <option>Choose one...</option>
+                                @foreach (App\Channel::all() as $channel)
+                                <option value="{{ $channel->id }}">{{ $channel->name }}</option>
+                                @endforeach
+                              </select>
 
                               <label for="body">Body: </label>
-                              <textarea name="body" rows="8" class="form-control"></textarea>
+                              <textarea name="body" rows="8" class="form-control" value="{{ old('body') }}" required></textarea>
                             </div>
                             <button type="submit" class="btn btn-primary">Publish</button>
                         </form>
                         @else
                         <p>Please <a href="{{ route('login') }}">sign in</a> to publish a new thread</p>
+                        @endif
+
+                        @if (count($errors))
+                        <ul class='alert alert-danger'>
+                          @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                          @endforeach
+                        </ul>
                         @endif
                       </div>
                   </div>
