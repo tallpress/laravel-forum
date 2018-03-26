@@ -61,10 +61,11 @@ class CreateThreadsTest extends TestCase
     public function a_new_thread_requires_a_channel_id()
     {
       factory('App\Channel', 2)->create();
-
       $this->expectException('Illuminate\Validation\ValidationException');
+
       $this->publishThread(['channel_id' => 99]);
       $this->post('/threads', $thread->toArray());
+
     }
 
 

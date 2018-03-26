@@ -37,13 +37,13 @@
                     <ul class="navbar-nav mr-auto">
                       <li><a href="/threads">All Threads</a></li>
 
-                    
+
                       <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                            aria-expanded="false">Channels <span class="caret"></span></a>
 
                         <ul class="dropdown-menu">
-                            <?php $__currentLoopData = App\Channel::all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $channel): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <?php $__currentLoopData = $channels; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $channel): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <li><a href="/threads/<?php echo e($channel->slug); ?>"><?php echo e($channel->name); ?></a></li>
                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         </ul>

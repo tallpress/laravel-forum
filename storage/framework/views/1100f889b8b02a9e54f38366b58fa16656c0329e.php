@@ -14,17 +14,18 @@
 
                             <div class="form-group">
                               <label for="title">Title: </label>
-                              <input type="text" name="title" class="form-control" value="<?php echo e(old('title')); ?>">
+                              <input type="text" name="title" class="form-control" value="<?php echo e(old('title')); ?>" required>
 
                               <label for="channel_id">Choose a channel</label>
                               <select class="form-control" name="channel_id" id="channel_id">
-                                <?php $__currentLoopData = App\Channel::all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $channel): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                <option>Choose one...</option>
+                                <?php $__currentLoopData = $channels; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $channel): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <option value="<?php echo e($channel->id); ?>"><?php echo e($channel->name); ?></option>
                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                               </select>
 
                               <label for="body">Body: </label>
-                              <textarea name="body" rows="8" class="form-control" value="<?php echo e(old('body')); ?>"></textarea>
+                              <textarea name="body" rows="8" class="form-control" value="<?php echo e(old('body')); ?>" required></textarea>
                             </div>
                             <button type="submit" class="btn btn-primary">Publish</button>
                         </form>
