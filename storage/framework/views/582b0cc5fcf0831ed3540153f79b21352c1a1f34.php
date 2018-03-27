@@ -20,6 +20,7 @@
                           <?php echo e($thread->body); ?>
 
                         </p>
+                        <p style="text-align:right;padding-right:10px"><?php echo e($thread->replies_count); ?> <?php echo e(str_plural('reply', $thread->replies_count)); ?></p>
                       </article>
                     </div>
 

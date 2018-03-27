@@ -21,6 +21,7 @@
                         <p>
                           {{ $thread->body }}
                         </p>
+                        <p style="text-align:right;padding-right:10px">{{ $thread->replies_count }} {{str_plural('reply', $thread->replies_count)}}</p>
                       </article>
                     </div>
 
