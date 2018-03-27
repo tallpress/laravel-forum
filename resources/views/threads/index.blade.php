@@ -9,18 +9,21 @@
 
                 <div class="card-body">
                   @foreach ($threads as $thread)
-                    <article>
-                      <h4>
-                        <a href="{{ $thread->path() }}">{{ $thread->title }}</a>
-                      </h4>
+                    <div class="card">
+                      <article>
+                        <h4>
+                          <a href="{{ $thread->path() }}">{{ $thread->title }}</a>
+                        </h4>
 
-                      <h6><a href="#">{{ $thread->creator->name }}</a></h6>
+                        <h6><a href="#">{{ $thread->creator->name }}</a></h6>
 
-                      <strong>{{ $thread->created_at->diffForHumans() }}</strong>
-                      <p>
-                        {{ $thread->body }}
-                      </p>
-                    </article>
+                        <strong>{{ $thread->created_at->diffForHumans() }}</strong>
+                        <p>
+                          {{ $thread->body }}
+                        </p>
+                      </article>
+                    </div>
+
                     <hr>
                   @endforeach
                 </div>

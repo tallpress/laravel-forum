@@ -7,19 +7,22 @@
 
                 <div class="card-body">
                   <?php $__currentLoopData = $threads; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $thread): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                    <article>
-                      <h4>
-                        <a href="<?php echo e($thread->path()); ?>"><?php echo e($thread->title); ?></a>
-                      </h4>
+                    <div class="card">
+                      <article>
+                        <h4>
+                          <a href="<?php echo e($thread->path()); ?>"><?php echo e($thread->title); ?></a>
+                        </h4>
 
-                      <h6><a href="#"><?php echo e($thread->creator->name); ?></a></h6>
+                        <h6><a href="#"><?php echo e($thread->creator->name); ?></a></h6>
 
-                      <strong><?php echo e($thread->created_at->diffForHumans()); ?></strong>
-                      <p>
-                        <?php echo e($thread->body); ?>
+                        <strong><?php echo e($thread->created_at->diffForHumans()); ?></strong>
+                        <p>
+                          <?php echo e($thread->body); ?>
 
-                      </p>
-                    </article>
+                        </p>
+                      </article>
+                    </div>
+
                     <hr>
                   <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </div>
