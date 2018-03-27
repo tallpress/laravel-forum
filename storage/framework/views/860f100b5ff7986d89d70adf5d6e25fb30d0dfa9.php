@@ -48,6 +48,9 @@
                               <a href="/threads/?by=<?php echo e(auth()->user()->name); ?>">My Threads</a>
                             </li>
                             <?php endif; ?>
+                            <li><a href="/threads?popularity=1">
+                              Popular Threads
+                            </a></li>
                         </ul>
                     </li>
 

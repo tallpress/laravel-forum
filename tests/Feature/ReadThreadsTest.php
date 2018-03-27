@@ -39,4 +39,20 @@ class ReadThreadsTest extends TestCase
         ->assertSee($thread->title)
         ->assertDontSee($otherThread->title);
     }
+
+    /** @test */
+    public function a_user_can_filter_threads_by_popularity()
+    {
+      $threadWithNoReplies = create('App\Thread');
+
+      $threadWithTwoReplies = create('App\Thread');
+      $repliesForThreadWithTwoReplies = create('App\Reply', ['thread_id' => $threadWithTwoReplies->id], 2);
+
+      $theadWithMostRepleis = create('App\Thread');
+      $repliesForThreadWithMostReplies = create('App\Reply', ['thread_id' => $theadWithMostRepleis->id] ,3);
+
+      $response = $this->getJson('threads?popularity=1')->json();
+
+      $this->assertEquals([3,2,0], array_column($response, 'replies_count'));
+    }
 }
