@@ -29,9 +29,16 @@ class Thread extends Model
     $this->replies()->create($reply);
   }
 
+
   public function path()
   {
     return "/threads/{$this->channel->slug}/{$this->id}";
+  }
+  
+
+  public function scopeFilter($query, $filters)
+  {
+    return $filters->apply($query);
   }
 
 }
