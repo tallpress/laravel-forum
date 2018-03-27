@@ -7,25 +7,23 @@
 
                 <div class="card-body">
                   <?php $__currentLoopData = $threads; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $thread): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                    <div class="card">
-                      <article>
-                        <h4>
-                          <a href="<?php echo e($thread->path()); ?>"><?php echo e($thread->title); ?></a>
-                        </h4>
+                    <article>
+                      <h4>
+                        <a href="<?php echo e($thread->path()); ?>"><?php echo e($thread->title); ?></a>
+                      </h4>
+                      <h6><a href="#"><?php echo e($thread->creator->name); ?></a></h6>
+                      <strong><?php echo e($thread->created_at->diffForHumans()); ?></strong>
 
-                        <h6><a href="#"><?php echo e($thread->creator->name); ?></a></h6>
+                      <p>
+                        <?php echo e($thread->body); ?>
 
-                        <strong><?php echo e($thread->created_at->diffForHumans()); ?></strong>
-                        <p>
-                          <?php echo e($thread->body); ?>
+                      </p>
 
-                        </p>
-                        <a href="<?php echo e($thread->path()); ?>">
-                          <p><?php echo e($thread->replies_count); ?> <?php echo e(str_plural('reply', $thread->replies_count)); ?></p>
-                        </a>
+                      <a href="<?php echo e($thread->path()); ?>">
+                        <p><?php echo e($thread->replies_count); ?> <?php echo e(str_plural('reply', $thread->replies_count)); ?></p>
+                      </a>
 
-                      </article>
-                    </div>
+                    </article>
 
                     <hr>
                   <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>

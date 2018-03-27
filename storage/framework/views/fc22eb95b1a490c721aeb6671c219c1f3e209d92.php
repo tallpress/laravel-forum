@@ -4,7 +4,8 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
-                  <a href="#"><?php echo e($thread->creator->name); ?></a><strong><?php echo e($thread->title); ?></strong></div>
+                  <strong><?php echo e($thread->title); ?></strong> was published by <a href="#"><?php echo e($thread->creator->name); ?></a>
+                </div>
 
                 <div class="card-body">
                   <?php echo e($thread->body); ?>
@@ -25,7 +26,7 @@
                   <div class="form-group">
                     <textarea placeholder="Comment here..." name="body" rows="8" cols="80" class="form-control"></textarea>
                   </div>
-                  <button type="submit" class="btn btn-default">Post</button>
+                  <button type="submit" class="btn btn-primary">Post</button>
               </form>
             <?php else: ?>
               <p>Please <a href="<?php echo e(route('login')); ?>">sign in</a> to comment</p>

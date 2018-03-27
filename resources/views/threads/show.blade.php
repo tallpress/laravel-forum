@@ -6,7 +6,8 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
-                  <a href="#">{{ $thread->creator->name }}</a><strong>{{ $thread->title }}</strong></div>
+                  <strong>{{ $thread->title }}</strong> was published by <a href="#">{{ $thread->creator->name }}</a>
+                </div>
 
                 <div class="card-body">
                   {{ $thread->body }}
@@ -24,7 +25,7 @@
                   <div class="form-group">
                     <textarea placeholder="Comment here..." name="body" rows="8" cols="80" class="form-control"></textarea>
                   </div>
-                  <button type="submit" class="btn btn-default">Post</button>
+                  <button type="submit" class="btn btn-primary">Post</button>
               </form>
             @else
               <p>Please <a href="{{ route('login') }}">sign in</a> to comment</p>
