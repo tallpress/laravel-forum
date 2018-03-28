@@ -68,6 +68,25 @@ class CreateThreadsTest extends TestCase
 
     }
 
+    /** @test */
+    public function a_thread_can_be_deleted_by_its_owner()
+    {
+      $this->signIn();
+      $thread = create('App\Thread', ['user_id' => auth()->id()]);
+      $response = $this->json('DELETE', $thread->path());
+      $response->assertStatus(204);
+      $this->assertDatabaseMissing('threads', ['id' => $thread->id]);
+    }
+
+    /** @test */
+    public function when_a_thread_is_deleted_its_replies_are_deleted_too()
+    {
+      $this->signIn();
+      $thread = create('App\Thread', ['user_id' => auth()->id()]);
+      $reply = create('App\Reply', ['thread_id' => $thread->id ]);
+      $response = $this->json('DELETE', $thread->path());
+      $this->assertDatabaseMissing('replies', ['id' => $reply->id]);
+    }
 
     public function publishThread($overrides)
     {
