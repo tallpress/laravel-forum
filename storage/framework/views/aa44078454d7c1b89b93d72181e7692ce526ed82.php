@@ -9,7 +9,7 @@
           <?php echo e(csrf_field()); ?>
 
           <button class="btn btn-info" type="submit" name="favoirte" <?php echo e($reply->isFavorited() ? 'disabled' : ''); ?> >
-            <?php echo e($reply->favorites_count); ?> <?php echo e(str_plural('Favorite', $reply->favorites_count)); ?>
+            <?php echo e($reply->getFavoriteCountAttribute()); ?> <?php echo e(str_plural('Favorite', $reply->getFavoriteCountAttribute())); ?>
 
           </button>
         </form>
