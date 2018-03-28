@@ -4,7 +4,7 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
-                  <strong><?php echo e($thread->title); ?></strong> was published by <a href="#"><?php echo e($thread->creator->name); ?></a>
+                  <strong><?php echo e($thread->title); ?></strong> was published by <a href="/profiles/<?php echo e($thread->creator->name); ?>"><?php echo e($thread->creator->name); ?></a>
                 </div>
 
                 <div class="card-body">

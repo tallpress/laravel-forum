@@ -6,7 +6,7 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
-                  <strong>{{ $thread->title }}</strong> was published by <a href="#">{{ $thread->creator->name }}</a>
+                  <strong>{{ $thread->title }}</strong> was published by <a href="/profiles/{{$thread->creator->name}}">{{ $thread->creator->name }}</a>
                 </div>
 
                 <div class="card-body">

@@ -11,7 +11,7 @@
                       <h4>
                         <a href="<?php echo e($thread->path()); ?>"><?php echo e($thread->title); ?></a>
                       </h4>
-                      <h6><a href="#"><?php echo e($thread->creator->name); ?></a></h6>
+                      <h6><a href="/profiles/<?php echo e($thread->creator->name); ?>"><?php echo e($thread->creator->name); ?></a></h6>
                       <strong><?php echo e($thread->created_at->diffForHumans()); ?></strong>
 
                       <p>
