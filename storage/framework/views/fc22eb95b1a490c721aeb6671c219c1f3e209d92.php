@@ -5,15 +5,17 @@
             <div class="card">
                 <div class="card-header">
                   <strong><?php echo e($thread->title); ?></strong> was published by <a href="/profiles/<?php echo e($thread->creator->name); ?>"><?php echo e($thread->creator->name); ?></a>
-                  <form class="" action="<?php echo e($thread->path()); ?>" method="POST">
-                    <div class="form-group">
-                      <?php echo e(csrf_field()); ?>
+                  <?php if($thread->user_id == auth()->id()): ?>
+                    <form class="" action="<?php echo e($thread->path()); ?>" method="POST">
+                      <div class="form-group">
+                        <?php echo e(csrf_field()); ?>
 
-                      <?php echo e(method_field('DELETE')); ?>
+                        <?php echo e(method_field('DELETE')); ?>
 
-                      <button type="submit" name="delete" class="btn btn-danger">Delete</button>
-                    </div>
-                  </form>
+                        <button type="submit" name="delete" class="btn btn-danger">Delete</button>
+                      </div>
+                    </form>
+                  <?php endif; ?>
                 </div>
 
                 <div class="card-body">

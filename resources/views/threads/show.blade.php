@@ -7,13 +7,15 @@
             <div class="card">
                 <div class="card-header">
                   <strong>{{ $thread->title }}</strong> was published by <a href="/profiles/{{$thread->creator->name}}">{{ $thread->creator->name }}</a>
-                  <form class="" action="{{ $thread->path() }}" method="POST">
-                    <div class="form-group">
-                      {{ csrf_field() }}
-                      {{ method_field('DELETE') }}
-                      <button type="submit" name="delete" class="btn btn-danger">Delete</button>
-                    </div>
-                  </form>
+                  @if ($thread->user_id == auth()->id())
+                    <form class="" action="{{ $thread->path() }}" method="POST">
+                      <div class="form-group">
+                        {{ csrf_field() }}
+                        {{ method_field('DELETE') }}
+                        <button type="submit" name="delete" class="btn btn-danger">Delete</button>
+                      </div>
+                    </form>
+                  @endif
                 </div>
 
                 <div class="card-body">
