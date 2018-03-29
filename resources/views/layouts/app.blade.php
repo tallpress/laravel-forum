@@ -63,7 +63,7 @@
                                 <li><a href="/threads/{{ $channel->slug }}">{{ $channel->name }}</a></li>
                             @endforeach
                         </ul>
-                    </li>
+                      </li>
 
                       <li><a href="/threads/create">Create new</a></li>
                     </ul>

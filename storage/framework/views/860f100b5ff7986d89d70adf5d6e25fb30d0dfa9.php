@@ -64,7 +64,7 @@
                                 <li><a href="/threads/<?php echo e($channel->slug); ?>"><?php echo e($channel->name); ?></a></li>
                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         </ul>
-                    </li>
+                      </li>
 
                       <li><a href="/threads/create">Create new</a></li>
                     </ul>

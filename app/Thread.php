@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Thread extends Model
 {
   protected $guarded = [];
-  protected $with = ['creator'];
+  protected $with = ['creator', 'channel'];
 
   protected static function boot()
   {
@@ -16,7 +16,7 @@ class Thread extends Model
       $builder->withCount('replies');
     });
     static::deleting(function($thread){
-      $thread->replies()->delete(); 
+      $thread->replies()->delete();
     });
   }
 
