@@ -8,8 +8,11 @@
                   <h6><?php echo e("Past activities"); ?></h6>
                   <br>
 
-                  <?php $__currentLoopData = $activities; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $activity): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                    <?php echo $__env->make("profiles.activities.{$activity->type}", array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+                  <?php $__currentLoopData = $activities; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $date => $activity): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                     <h3><?php echo e($date); ?></h3>
+                    <?php $__currentLoopData = $activity; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $record): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <?php echo $__env->make("profiles.activities.{$record->type}", ['activity' => $record], array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                   <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
                 </div>
