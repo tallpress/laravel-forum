@@ -7,22 +7,13 @@
             <div class="card">
                 <div class="card-header">{{ $profileUser->name }}</div>
                 <div class="card-body">
-                  <h6>{{ $profileUser->name . "\'s threads" }}</h6>
+                  <h6>{{ "Past activities" }}</h6>
                   <br>
-                  @foreach ($threads as $thread)
-                    <div class="card">
-                        <div class="card-header">
-                          <strong>
-                            <a href="{{ $thread->path() }}">{{ $thread->title }}</a>
-                          </strong> was published by {{ $thread->creator->name }}
-                          {{$thread->created_at->diffForHumans()}}
-                        </div>
-                        <div class="card-body">
-                          {{ $thread->body }}
-                        </div>
-                    </div>
+
+                  @foreach ($activities as $activity)
+                    @include ("profiles.activities.{$activity->type}")
                   @endforeach
-                  {{ $threads->links() }}
+
                 </div>
             </div>
         </div>

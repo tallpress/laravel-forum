@@ -29,11 +29,16 @@ class User extends Authenticatable
 
     public function threads()
     {
-      return $this->hasMany(Thread::class)->latest();
+      return $this->hasMany(Thread::class)->latest()->get();
     }
 
     public function getRouteKeyName()
     {
        return 'name';
+    }
+
+    public function activity()
+    {
+         return $this->hasMany(\App\Activity::class);
     }
 }

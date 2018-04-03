@@ -5,25 +5,12 @@
             <div class="card">
                 <div class="card-header"><?php echo e($profileUser->name); ?></div>
                 <div class="card-body">
-                  <h6><?php echo e($profileUser->name . "\'s threads"); ?></h6>
+                  <h6><?php echo e("Past activities"); ?></h6>
                   <br>
-                  <?php $__currentLoopData = $threads; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $thread): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                    <div class="card">
-                        <div class="card-header">
-                          <strong>
-                            <a href="<?php echo e($thread->path()); ?>"><?php echo e($thread->title); ?></a>
-                          </strong> was published by <?php echo e($thread->creator->name); ?>
 
-                          <?php echo e($thread->created_at->diffForHumans()); ?>
-
-                        </div>
-                        <div class="card-body">
-                          <?php echo e($thread->body); ?>
-
-                        </div>
-                    </div>
+                  <?php $__currentLoopData = $activities; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $activity): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <?php echo $__env->make("profiles.activities.{$activity->type}", array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
                   <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                  <?php echo e($threads->links()); ?>
 
                 </div>
             </div>
