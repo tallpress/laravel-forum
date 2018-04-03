@@ -6,7 +6,7 @@
                 <div class="card-header">Forum Threads</div>
 
                 <div class="card-body">
-                  <?php $__currentLoopData = $threads; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $thread): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                  <?php $__empty_1 = true; $__currentLoopData = $threads; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $thread): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                     <article>
                       <h4>
                         <a href="<?php echo e($thread->path()); ?>"><?php echo e($thread->title); ?></a>
@@ -22,11 +22,13 @@
                       <a href="<?php echo e($thread->path()); ?>">
                         <p><?php echo e($thread->replies_count); ?> <?php echo e(str_plural('reply', $thread->replies_count)); ?></p>
                       </a>
-
                     </article>
-
-                    <hr>
-                  <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                  <hr>
+                  <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
+                    <p>
+                      There are no related results at this time.
+                    </p>
+                  <?php endif; ?>
                 </div>
             </div>
         </div>

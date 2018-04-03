@@ -15,6 +15,7 @@ class ThreadController extends Controller
     $this->middleware('auth')->except('index', 'show');
   }
 
+
   /**
    * Display a listing of the resource.
    * @param Channel $channel
@@ -117,7 +118,7 @@ class ThreadController extends Controller
    */
   public function destroy(Channel $channel, Thread $thread)
   {
-    if ($thread->id != auth()->id()) {
+    if ($thread->user_id != auth()->id()) {
       if (request()->wantsJson()) {
         return response(['status' => 'Permission Denied'], 403);
       }
@@ -127,10 +128,8 @@ class ThreadController extends Controller
       if (request()->wantsJson()) {
         return response([], 204);
       }
-
       return redirect('/threads');
     }
-
   }
 
   public function getThreads(Channel $channel, ThreadFilters $filters)

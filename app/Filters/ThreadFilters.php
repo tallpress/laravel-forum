@@ -6,7 +6,6 @@ Use App\Filters\Filters;
 
 class ThreadFilters extends Filters
 {
-
   protected $filters = ['by', 'popularity'];
 
   public function by($username)

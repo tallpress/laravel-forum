@@ -8,7 +8,7 @@
                 <div class="card-header">Forum Threads</div>
 
                 <div class="card-body">
-                  @foreach ($threads as $thread)
+                  @forelse ($threads as $thread)
                     <article>
                       <h4>
                         <a href="{{ $thread->path() }}">{{ $thread->title }}</a>
@@ -23,11 +23,13 @@
                       <a href="{{ $thread->path() }}">
                         <p>{{ $thread->replies_count }} {{str_plural('reply', $thread->replies_count)}}</p>
                       </a>
-
                     </article>
-
-                    <hr>
-                  @endforeach
+                  <hr>
+                  @empty
+                    <p>
+                      There are no related results at this time.
+                    </p>
+                  @endforelse
                 </div>
             </div>
         </div>
