@@ -8,6 +8,7 @@ class ProfileController extends Controller
 {
   public function show(User $user)
   {
+    // return \App\Activity::feed($user);
     return view('profiles.show', [
         'profileUser' => $user,
         'activities' => \App\Activity::feed($user)

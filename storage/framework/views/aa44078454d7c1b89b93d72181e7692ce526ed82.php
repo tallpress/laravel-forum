@@ -1,7 +1,7 @@
 <hr>
-  <div class="card">
+  <div class="card" id="reply-<?php echo e($reply->id); ?>">
       <div class="card-header">
-        <a href="#"><?php echo e($reply->owner->name); ?></a> said <?php echo e($reply->created_at->diffForHumans()); ?>
+        <a href="/profiles/<?php echo e($reply->owner->name); ?>"><?php echo e($reply->owner->name); ?></a> said <?php echo e($reply->created_at->diffForHumans()); ?>
 
       </div>
       <div class="">
