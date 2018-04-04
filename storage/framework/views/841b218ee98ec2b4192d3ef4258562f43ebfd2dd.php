@@ -14,5 +14,5 @@
         <?php echo e($activity->subject->body); ?>
 
     </div>
-    
+
 </div>

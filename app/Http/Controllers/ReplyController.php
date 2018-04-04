@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Thread;
+use App\Reply;
 
 class ReplyController extends Controller
 {
@@ -15,7 +16,6 @@ class ReplyController extends Controller
 
   public function store($channelId, Thread $thread)
   {
-
     $this->validate(request(), [
       'body' => 'required'
     ]);
@@ -27,4 +27,13 @@ class ReplyController extends Controller
 
     return redirect($thread->path());
   }
+
+  public function destroy(Reply $reply)
+    {
+        if ($reply->user_id != auth()->id()) {
+            return response([], 403);
+        }
+        $reply->delete();
+        return back();
+    }
 }

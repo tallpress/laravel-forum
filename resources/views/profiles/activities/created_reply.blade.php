@@ -11,5 +11,5 @@
     <div class="card-body">
         {{ $activity->subject->body }}
     </div>
-    
+
 </div>
