@@ -75,11 +75,6 @@ class ReadThreadsTest extends TestCase
         $reply = create('App\Reply', ['body' => 'BIG_FUCK_OFF_TITLE', 'thread_id' => $threadWithReply->id]);
         $threadWithoutReply = create('App\Thread');
         $response = $this->getJson('/threads?unanswered=1')->json();
-        // $this->get('/threads?unanswered=1')
-        //     ->assertSee($threadWithReply->title)
-        //     ->assertSee($threadWithReply->body)
-        //     ->assertDontSee($threadWithoutReply->title)
-        //     ->assertDontSee($threadWithoutReply->body);
         $this->assertCount(1, $response);
     }
 }
