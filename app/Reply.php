@@ -11,14 +11,24 @@ class Reply extends Model
   protected $guarded = [];
   protected $with =['owner', 'favorites'];
 
-  public static function boot()
-  {
+  // protected $appends = ['favoritesCount', 'isFavorited'];
+
+    public static function boot()
+    {
       parent::boot();
+
       static::deleting(function($reply) {
+          $reply->thread->decrement('replies_count');
           foreach ($reply->favorites as $favorite)
           $favorite->delete();
+
       });
-  }
+
+      static::created(function($reply) {
+          $reply->thread->increment('replies_count');
+      });
+
+    }
 
   public function owner()
   {

@@ -50,6 +50,9 @@
                             <li><a href="/threads?popularity=1">
                               Popular Threads
                             </a></li>
+                            <li><a href="/threads?unanswered=1">
+                                Unanswered Threads
+                            </a></li>
                         </ul>
                     </li>
 

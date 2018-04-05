@@ -55,4 +55,30 @@ class ReadThreadsTest extends TestCase
 
       $this->assertEquals([3,2,0], array_column($response, 'replies_count'));
     }
+
+    /** @test */
+    public function a_user_can_search_by_unanswered_threads()
+    {
+        $thread = create('App\Thread');
+        $thread2 = create('App\Thread');
+        create('App\Reply', ['thread_id' => $thread2->id]);
+
+        $response = $this->getJson('/threads?unanswered=1')->json();
+        $this->assertCount(1, $response);
+    }
+
+    /** @test */
+    public function a_user_can_filter_threads_by_unansered_threads_visual()
+    {
+        $trump = create('App\User');
+        $this->signIn($trump);
+        $threadWithReply = create('App\Thread', ['user_id' => $trump->id]);
+        $reply = create('App\Reply', ['thread_id' => $threadWithReply->id]);
+        $threadWithoutReply = create('App\Thread');
+        $this->get('/threads?unanswered=1')
+            ->assertSee($threadWithReply->title)
+            ->assertSee($threadWithReply->body)
+            ->assertDontSee($threadWithoutReply->title)
+            ->assertDontSee($threadWithoutReply->body);
+    }
 }
