@@ -45,7 +45,7 @@
           <div class="card">
             <div class="card-body">
               <p>This thread was published on <strong>{{ $thread->created_at->toFormattedDateString() }}</strong> by
-                <a href="#"><strong>{{ $thread->creator->name }}</strong></a> and currently has
+                <a href="/profiles/{{$thread->creator->name}}"><strong>{{ $thread->creator->name }}</strong></a> and currently has
                 <strong>{{ $thread->replies_count }}</strong> {{ str_plural('reply', $thread->replies_count )}}.
               </p>
             </div>

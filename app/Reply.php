@@ -11,6 +11,15 @@ class Reply extends Model
   protected $guarded = [];
   protected $with =['owner', 'favorites'];
 
+  public static function boot()
+  {
+      parent::boot();
+      static::deleting(function($reply) {
+          foreach ($reply->favorites as $favorite)
+          $favorite->delete();
+      });
+  }
+
   public function owner()
   {
     return $this->belongsTo(User::class, 'user_id');

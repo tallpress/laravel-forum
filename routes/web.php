@@ -28,6 +28,6 @@ Route::get('/threads/{channel}', 'ThreadController@index');
 Route::post('/threads/{channel}/{thread}/replies', 'ReplyController@store');
 
 Route::post('/replies/{reply}/favorites', 'FavoritesController@store');
-Route::delete('replies/{id}', 'ReplyController@destroy');
+Route::delete('replies/{reply}', 'ReplyController@destroy');
 
 Route::get('/profiles/{user}', 'ProfileController@show')->name('profile');

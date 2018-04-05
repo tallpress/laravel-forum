@@ -48,7 +48,7 @@
           <div class="card">
             <div class="card-body">
               <p>This thread was published on <strong><?php echo e($thread->created_at->toFormattedDateString()); ?></strong> by
-                <a href="#"><strong><?php echo e($thread->creator->name); ?></strong></a> and currently has
+                <a href="/profiles/<?php echo e($thread->creator->name); ?>"><strong><?php echo e($thread->creator->name); ?></strong></a> and currently has
                 <strong><?php echo e($thread->replies_count); ?></strong> <?php echo e(str_plural('reply', $thread->replies_count )); ?>.
               </p>
             </div>

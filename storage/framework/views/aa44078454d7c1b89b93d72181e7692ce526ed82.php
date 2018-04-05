@@ -18,4 +18,17 @@
         <?php echo e($reply->body); ?>
 
       </div>
+
+      <?php if($reply->user_id == auth()->id()): ?>
+          <div class="card-footer">
+              <form action="/replies/<?php echo e($reply->id); ?>" method="POST">
+                  <?php echo e(csrf_field()); ?>
+
+                  <?php echo e(method_field('DELETE')); ?>
+
+                  <button type="submit" class="btn btn-danger" name="delete" >Delete</button>
+              </form>
+          </div>
+      <?php endif; ?>
+
   </div>

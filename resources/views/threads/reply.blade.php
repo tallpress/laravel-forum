@@ -14,4 +14,15 @@
       <div class="card-body">
         {{ $reply->body }}
       </div>
+
+      @if ($reply->user_id == auth()->id())
+          <div class="card-footer">
+              <form action="/replies/{{ $reply->id }}" method="POST">
+                  {{ csrf_field() }}
+                  {{ method_field('DELETE') }}
+                  <button type="submit" class="btn btn-danger" name="delete" >Delete</button>
+              </form>
+          </div>
+      @endif
+
   </div>

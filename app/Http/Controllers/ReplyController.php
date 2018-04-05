@@ -28,12 +28,13 @@ class ReplyController extends Controller
     return redirect($thread->path());
   }
 
-  public function destroy(Reply $reply)
+    public function destroy(Reply $reply)
     {
-        if ($reply->user_id != auth()->id()) {
-            return response([], 403);
-        }
+        $this->authorize('update', $reply); // TODO: THIS AUTHORISES THE DELETE
         $reply->delete();
+        if (request()->expectsJson()) {
+         return response(['status' => 'Reply deleted']);
+        }
         return back();
     }
 }

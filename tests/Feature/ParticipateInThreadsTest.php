@@ -20,6 +20,16 @@ class ParticipateInThreadsTest extends TestCase
         $this->assertDatabaseMissing('replies', ['id' => $reply->id]);
     }
 
+    /** @test */
+    public function a_auth_user_can_Delete_a_reply()
+    {
+        $this->signIn();
+        $thread = create('App\Thread', ['user_id' => auth()->id()]);
+        $reply = create('App\Reply', ['user_id' => auth()->id(), 'thread_id' => $thread->id]);
+        $this->json('DELETE', $reply->path())->assertStatus(204);
+        $this->assertDatabaseMissing('replies', ['body' => $reply->body]);
+    }
+    
     // /** @test */
     // public function a_un_auth_user_cannot_delete_a_reply()
     // {
@@ -29,14 +39,4 @@ class ParticipateInThreadsTest extends TestCase
     //     $this->delete("replies/{$reply->id}")
     //         ->assertRedirect('login');
     // }
-
-    /** @test */
-    public function a_auth_user_can_Delete_a_reply()
-    {
-        $this->signIn();
-        $thread = create('App\Thread', ['user_id' => auth()->id()]);
-        $reply = create('App\Reply', ['user_id' => auth()->id(), 'thread_id' => $thread->id]);
-        $this->json('DELETE', $reply->path());
-        $this->assertDatabaseMissing('replies', ['body' => $reply->body]);
-    }
 }
