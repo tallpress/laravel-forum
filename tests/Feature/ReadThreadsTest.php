@@ -70,15 +70,16 @@ class ReadThreadsTest extends TestCase
     /** @test */
     public function a_user_can_filter_threads_by_unansered_threads_visual()
     {
-        $trump = create('App\User');
-        $this->signIn($trump);
-        $threadWithReply = create('App\Thread', ['user_id' => $trump->id]);
-        $reply = create('App\Reply', ['thread_id' => $threadWithReply->id]);
+        $this->signIn();
+        $threadWithReply = create('App\Thread');
+        $reply = create('App\Reply', ['body' => 'BIG_FUCK_OFF_TITLE', 'thread_id' => $threadWithReply->id]);
         $threadWithoutReply = create('App\Thread');
-        $this->get('/threads?unanswered=1')
-            ->assertSee($threadWithReply->title)
-            ->assertSee($threadWithReply->body)
-            ->assertDontSee($threadWithoutReply->title)
-            ->assertDontSee($threadWithoutReply->body);
+        $response = $this->getJson('/threads?unanswered=1')->json();
+        // $this->get('/threads?unanswered=1')
+        //     ->assertSee($threadWithReply->title)
+        //     ->assertSee($threadWithReply->body)
+        //     ->assertDontSee($threadWithoutReply->title)
+        //     ->assertDontSee($threadWithoutReply->body);
+        $this->assertCount(1, $response);
     }
 }
