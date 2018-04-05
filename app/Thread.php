@@ -70,8 +70,8 @@ class Thread extends Model
 
     public function unsubscribe(int $userId = null)
     {
-        $this->subscriptions()->delete([
-            'user_id' => $userId ?: auth()->id()
-        ]);
+        $this->subscriptions()
+            ->where('user_id', $userId ?: auth()->id())
+            ->delete();
     }
 }
